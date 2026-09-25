@@ -74,9 +74,18 @@ body_attr: >-
         </div>
         {% endif %}
 
+        {%- comment -%}
+            With a filter on, the published entries are gathered here under one heading:
+            broken across years a filtered list reads as a handful of stray cards.
+        {%- endcomment -%}
+        <div class="pub-section pub-filtered-section" hidden>
+            <h2 class="h4 pt-4 anchor-offset" id="year-published">Published</h2>
+            <div class="pub-list my-0 p-0 bg-white shadow-sm rounded-xl" id="pub-filtered"></div>
+        </div>
+
         {% assign counter = num_published %}
         {% for year in pubs_by_year %}
-        <div class="pub-section">
+        <div class="pub-section pub-year">
             <h2 class="h4 pt-4 anchor-offset" id="year-{{ year.name }}">{{ year.name }}</h2>
             <div class="pub-list my-0 p-0 bg-white shadow-sm rounded-xl">
                 {% for item in year.items %}
@@ -96,6 +105,7 @@ body_attr: >-
             {% if num_preprints > 0 %}
             <a class="nav-link d-block" href="#year-preprints">Preprints</a>
             {% endif %}
+            <a class="nav-link d-block" href="#year-published" hidden>Published</a>
             {% for year in pubs_by_year %}
             <a class="nav-link d-block" href="#year-{{ year.name }}">{{ year.name }}</a>
             {% endfor %}
@@ -118,6 +128,30 @@ body_attr: >-
     var entries = Array.prototype.slice.call(document.querySelectorAll('.pub-entry'));
     var sections = Array.prototype.slice.call(document.querySelectorAll('.pub-section'));
     var navLinks = Array.prototype.slice.call(document.querySelectorAll('#navbar-year .nav-link'));
+
+    // Where each published entry sits when no filter is on, so it can go back there.
+    var filtered = document.getElementById('pub-filtered');
+    var byYear = Array.prototype.slice.call(document.querySelectorAll('.pub-year .pub-entry'));
+    byYear.forEach(function (entry) {
+        entry._homeParent = entry.parentNode;
+        entry._homeNext = entry.nextElementSibling;
+    });
+
+    // Under a filter the published entries collect in one list; without one they return to
+    // their years. Restoring runs backwards so each entry's old neighbour is already back.
+    function regroup(filtering) {
+        if (filtering) {
+            // Re-append every showing entry in page order, so narrowing or widening the
+            // selection cannot leave a late arrival stranded at the end of the list.
+            byYear.forEach(function (entry) {
+                if (!entry.hidden) filtered.appendChild(entry);
+            });
+        } else {
+            byYear.slice().reverse().forEach(function (entry) {
+                if (entry.parentNode === filtered) entry._homeParent.insertBefore(entry, entry._homeNext);
+            });
+        }
+    }
 
     function pressed(chip) { return chip.getAttribute('aria-pressed') === 'true'; }
 
@@ -158,6 +192,7 @@ body_attr: >-
             });
         });
 
+        regroup(keys.length > 0);
         document.querySelectorAll('.pub-list').forEach(redrawEdges);
 
         // Drop a year - and its link in the sidebar - once nothing is left under it.
