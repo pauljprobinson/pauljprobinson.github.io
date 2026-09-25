@@ -1,0 +1,33 @@
+{%- comment -%}
+    One-line citation for a publication. Authors: four or fewer are listed in full;
+    beyond that the list runs to your own name when it falls before the fifth author,
+    otherwise to the first author alone, then "et al.".
+    Usage: {% include widgets/citation_line.html item=item %}
+{%- endcomment -%}
+{%- assign item = include.item -%}
+{%- assign n_authors = item.authors | size -%}
+{%- if n_authors > 4 -%}
+    {%- assign cut = 1 -%}
+    {%- for a in item.authors limit: 4 -%}
+        {%- assign nm = a | replace: "*", "" | replace: "#", "" -%}
+        {%- assign nm_info = site.data.authors[nm] -%}
+        {%- if nm_info.bold and cut == 1 and forloop.index > 1 -%}
+            {%- assign cut = forloop.index -%}
+        {%- endif -%}
+    {%- endfor -%}
+    {%- assign shown = item.authors | slice: 0, cut -%}
+{%- else -%}
+    {%- assign shown = item.authors -%}
+{%- endif -%}
+{%- for a in shown -%}
+    {%- assign nm = a | replace: "*", "" | replace: "#", "" -%}
+    {%- assign mark = a | remove: nm -%}
+    {%- assign info = site.data.authors[nm] -%}
+    {%- if info.bold %}<strong>{{ nm }}{{ mark }}</strong>{% else %}{{ nm }}{{ mark }}{% endif -%}
+    {%- unless forloop.last %}, {% endunless -%}
+{%- endfor -%}
+{%- if n_authors > 4 %} et al{% endif %}.
+{{ item.title }}.
+{% if item.in_preparation %}<em>In preparation.</em>
+{% else %}<i>{{ item.pub }}</i> <strong>{{ item.pub_date }}</strong>{% if item.volume %}, <i>{{ item.volume }}</i>{% endif %}{% if item.pages %}, {{ item.pages }}{% elsif item.article_number %}, {{ item.article_number }}{% endif %}.{% endif %}
+{% for link in item.links %}<a href="{{ link[1] }}" target="_blank">{{ link[0] }}</a>{% endfor %}

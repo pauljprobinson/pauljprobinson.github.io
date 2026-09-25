@@ -1,5 +1,7 @@
 {%- comment -%}
-    Mirrors the section headings on the Research page, linked to each section.
+    Research interests. Each one expands in place to show the key publications for
+    that area - publications carrying a matching `representative:` key. This stands
+    in for linking to the research page while that page is unpublished.
 {%- endcomment -%}
 {% if site.data.research.areas %}
 <div class="card border-0 shadow-sm bg-white h-100">
@@ -7,10 +9,39 @@
         <h6>Research Interests</h6>
         <ul class="list-unstyled mb-0 mt-3">
             {% for area in site.data.research.areas %}{% if area.title %}
-            <li class="d-flex mb-2">
-                <i class="fas fa-atom research-icon mr-2 mt-1"></i>
-                <div>
-                    <a class="text-body" href="{{ '/research' | relative_url }}#{{ area.title | slugify }}">{{ area.title }}</a>
+            {%- assign slug = area.title | slugify -%}
+            {%- assign reps = site.publications | where: "representative", area.key | sort: "date" | reverse -%}
+            <li class="mb-2">
+                <div class="d-flex">
+                    <i class="fas fa-atom research-icon mr-2 mt-1"></i>
+                    <div class="w-100">
+                        {% if reps.size > 0 %}
+                        <a class="interest-toggle" data-toggle="collapse" href="#interest-{{ slug }}"
+                           role="button" aria-expanded="false" aria-controls="interest-{{ slug }}">
+                            {{ area.title }}<span class="interest-badge ml-2"><i class="fas fa-chevron-down interest-caret mr-1"></i><span class="interest-label-show">Show Key Publications</span><span class="interest-label-hide">Hide Key Publications</span></span>
+                        </a>
+                        <div class="collapse" id="interest-{{ slug }}">
+                            <ul class="list-unstyled small text-muted mt-2 mb-3 pl-3 interest-papers">
+                                {% for item in reps %}
+                                <li class="mb-2">{% include widgets/citation_line.html item=item %}</li>
+                                {% endfor %}
+                            </ul>
+                            {% if area.figure %}
+                            <div class="text-center mb-3">
+                                {% if area.figure contains ".mp4" %}
+                                <video class="rounded interest-figure" style="max-width: {{ area.figure_width | default: '75%' }}; max-height: {{ area.figure_height | default: '12rem' }}" autoplay loop muted playsinline>
+                                    <source src="{{ area.figure | relative_url }}" type="video/mp4">
+                                </video>
+                                {% else %}
+                                <img src="{{ area.figure | relative_url }}" class="rounded interest-figure" style="max-width: {{ area.figure_width | default: '75%' }}; max-height: {{ area.figure_height | default: '12rem' }}" alt="{{ area.title }}">
+                                {% endif %}
+                            </div>
+                            {% endif %}
+                        </div>
+                        {% else %}
+                        {{ area.title }}
+                        {% endif %}
+                    </div>
                 </div>
             </li>
             {% endif %}{% endfor %}

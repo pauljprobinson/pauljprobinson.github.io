@@ -277,6 +277,67 @@ div.lazy {
     max-height: 24rem;
 }
 
+/* Research interests that expand to their key publications. */
+.interest-toggle {
+    color: #212529;
+    cursor: pointer;
+}
+
+.interest-toggle:hover,
+.interest-toggle:focus {
+    color: #212529;
+    text-decoration: none;
+}
+
+.interest-badge {
+    display: inline-block;
+    padding: 0.05rem 0.4rem;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    font-size: 0.7rem;
+    color: #6c757d;
+    white-space: nowrap;
+    vertical-align: 12%;
+}
+
+.interest-toggle:hover .interest-badge,
+.interest-toggle[aria-expanded="true"] .interest-badge {
+    border-color: #adb5bd;
+    color: #495057;
+}
+
+.interest-caret {
+    font-size: 0.85em;
+    transition: transform 0.2s ease;
+}
+
+.interest-toggle[aria-expanded="true"] .interest-caret {
+    transform: rotate(180deg);
+}
+
+/* Swap the label when the panel is open. */
+.interest-label-hide,
+.interest-toggle[aria-expanded="true"] .interest-label-show {
+    display: none;
+}
+
+.interest-toggle[aria-expanded="true"] .interest-label-hide {
+    display: inline;
+}
+
+.interest-papers {
+    border-left: 2px solid #eef3fa;
+}
+
+/* Figure shown under the publications in an expanded research interest. */
+.interest-figure {
+    display: block;
+    margin: 0 auto;
+    width: auto;
+    height: auto;
+    /* max-width and max-height are set per area in the template */
+}
+
 /* Template credit beneath the "last updated" line. */
 .footer-credit {
     margin-top: 0.15rem;
