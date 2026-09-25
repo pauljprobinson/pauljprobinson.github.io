@@ -470,3 +470,10 @@ div.lazy {
     object-fit: contain;
     margin-right: 0.3rem;
 }
+
+/* Bootstrap's display utilities are !important, so `.d-block` beats the browser's own
+   rule for the hidden attribute and the element stays on screen. Restore it: the
+   publication filter hides year links in the sticky sidebar this way. */
+[hidden] {
+    display: none !important;
+}

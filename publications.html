@@ -210,6 +210,9 @@ body_attr: >-
             }
         });
         empty.hidden = anyShown;
+
+        // Entries have moved, so the offsets scrollspy measured at load are stale.
+        if (window.jQuery && jQuery.fn.scrollspy) jQuery('[data-spy="scroll"]').scrollspy('refresh');
     }
 
     chips.forEach(function (chip) {
