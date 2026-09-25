@@ -1,22 +1,9 @@
-"Your Name":
+# Styling for author names as they appear in publication entries.
+# The key must match the name exactly as written in a publication's `authors` list
+# (a trailing * for equal contribution or # for corresponding author is stripped first).
+#   bold: true  - highlight (used for yourself)
+#   url:        - link the name to a homepage
+#   name:       - display a different string than the key
+
+"P. J. Robinson":
   bold: true
-
-"Robert White":
-  url: https://www.google.com/?q=Robert+White
-
-"Charles Green (MIT)":
-  name: Charles Green
-  url: https://www.google.com/?q=Charles+Green+MIT
-
-"Charles Green (Stanford)":
-  name: Charles Green
-  url: https://www.google.com/?q=Charles+Green+Stanford
-
-"Garrett Harris":
-  url: https://www.google.com/?q=Garrett+Harris
-
-"James Wang":
-  url: https://www.google.com/?q=James+Wang
-
-"John Doe":
-  url: https://www.google.com/?q=John+Doe

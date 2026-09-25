@@ -6,16 +6,55 @@ body_attr: >-
   data-spy="scroll" data-target="#navbar-year" data-offset="100"
 ---
 
-{% assign pubs_by_year = site.publications | sort: "date" | reverse | group_by_exp: "item", "item.date | date: '%Y'" %}
+{% assign all_pubs = site.publications | sort: "date" | reverse %}
+{% assign in_prep = all_pubs | where: "in_preparation", true %}
+{% assign preprints = all_pubs | where: "preprint", true %}
+{% assign published = all_pubs | where_exp: "item", "item.preprint != true" | where_exp: "item", "item.in_preparation != true" %}
+{% assign pubs_by_year = published | group_by_exp: "item", "item.date | date: '%Y'" %}
+{% assign num_preprints = preprints | size %}
+{% assign num_in_prep = in_prep | size %}
+{% assign num_published = published | size %}
 
 <div class="row">
     <div class="col-12 col-lg-10">
+        {% if num_in_prep > 0 %}
+        <h2 class="h4 pt-4 anchor-offset" id="year-in-preparation">In Preparation</h2>
+        <div class="my-0 py-3 px-4 bg-white shadow-sm rounded-xl">
+            <ul class="list-unstyled mb-0 small text-muted">
+                {% for item in in_prep %}
+                <li class="mb-1">
+                    {%- if item.authors -%}
+                        {%- for a in item.authors -%}
+                            {%- assign nm = a | replace: "*", "" | replace: "#", "" -%}
+                            {%- assign info = site.data.authors[nm] -%}
+                            {%- if info.bold %}<strong>{{ nm }}</strong>{% else %}{{ nm }}{% endif -%}
+                            {%- unless forloop.last %}, {% endunless -%}
+                        {%- endfor -%}
+                    {%- endif -%}
+                    {%- if item.authors and item.title != "" %}. {% endif -%}
+                    {% if item.title != "" %}{{ item.title }}{% endif %}{% if item.note %} ({{ item.note }}){% endif %}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        {% if num_preprints > 0 %}
+        <h2 class="h4 pt-4 anchor-offset" id="year-preprints">Preprints</h2>
+        <div class="my-0 p-0 bg-white shadow-sm rounded-xl">
+            {% for item in preprints %}
+                {% include widgets/publication_item.html item=item hide_bottom_border=forloop.last first=forloop.first last=forloop.last %}
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% assign counter = num_published %}
         {% for year in pubs_by_year %}
-        {% assign num_papers = year.items | size %}
-        <h2 class="pt-4" id="year-{{ year.name }}">{{ year.name }}</h2>
+        <h2 class="h4 pt-4 anchor-offset" id="year-{{ year.name }}">{{ year.name }}</h2>
         <div class="my-0 p-0 bg-white shadow-sm rounded-xl">
             {% for item in year.items %}
-                {% include widgets/publication_item.html item=item hide_bottom_border=forloop.last first=forloop.first last=forloop.last %}
+                {% include widgets/publication_item.html item=item number=counter hide_bottom_border=forloop.last first=forloop.first last=forloop.last %}
+                {% assign counter = counter | minus: 1 %}
             {% endfor %}
         </div>
         {% endfor %}
@@ -23,6 +62,12 @@ body_attr: >-
 
     <div class="col-2 d-none d-lg-block">
         <div id="navbar-year" class="nav nav-pills flex-column sticky-top" style="top: 80px">
+            {% if num_in_prep > 0 %}
+            <a class="nav-link d-block" href="#year-in-preparation">In Preparation</a>
+            {% endif %}
+            {% if num_preprints > 0 %}
+            <a class="nav-link d-block" href="#year-preprints">Preprints</a>
+            {% endif %}
             {% for year in pubs_by_year %}
             <a class="nav-link d-block" href="#year-{{ year.name }}">{{ year.name }}</a>
             {% endfor %}
