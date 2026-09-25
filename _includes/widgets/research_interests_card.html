@@ -1,0 +1,20 @@
+{%- comment -%}
+    Mirrors the section headings on the Research page, linked to each section.
+{%- endcomment -%}
+{% if site.data.research.areas %}
+<div class="card border-0 shadow-sm bg-white h-100">
+    <div class="card-body p-4">
+        <h6>Research Interests</h6>
+        <ul class="list-unstyled mb-0 mt-3">
+            {% for area in site.data.research.areas %}{% if area.title %}
+            <li class="d-flex mb-2">
+                <i class="fas fa-atom research-icon mr-2 mt-1"></i>
+                <div>
+                    <a class="text-body" href="{{ '/research' | relative_url }}#{{ area.title | slugify }}">{{ area.title }}</a>
+                </div>
+            </li>
+            {% endif %}{% endfor %}
+        </ul>
+    </div>
+</div>
+{% endif %}

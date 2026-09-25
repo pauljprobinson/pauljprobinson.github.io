@@ -1,39 +1,53 @@
 ---
 layout: default
-title : Homepage
+title : ""
 navbar_title: Home
 ---
+{% include widgets/profile_card.html %}
 
-<div class="row">
-    <div class="col-lg-3 col-md-4">
-        {% include widgets/profile_card_mini.html %}
+<!-- Debugging widgets -->
+{% include widgets/debug_repo_name.html %}
+{% include widgets/debug_url.html %}
+
+{%- comment -%}
+    Education and Research Interests sit side by side. If the research data is not
+    present, Education takes the full width rather than leaving half the row empty.
+{%- endcomment -%}
+{%- assign show_interests = false -%}
+{%- if site.data.display.homepage.show_research_interests and site.data.research.areas -%}
+    {%- assign show_interests = true -%}
+{%- endif -%}
+{% if site.data.display.homepage.show_education or show_interests %}
+<div class="row mt-3">
+    {% if site.data.display.homepage.show_education %}
+    <div class="{% if show_interests %}col-md-6 mb-3 mb-md-0{% else %}col{% endif %}">
+        {% include widgets/education_card.html %}
     </div>
-    <div class="col-lg-9 col-md-8">
+    {% endif %}
+    {% if show_interests %}
+    <div class="col-md-6">
+        {% include widgets/research_interests_card.html %}
+    </div>
+    {% endif %}
+</div>
+{% endif %}
 
-        {% include widgets/profile_card_bio_only.html %}
+{% if site.data.display.homepage.show_awards %}
+    {% include widgets/awards_card.html %}
+{% endif %}
 
-        <!-- Debugging widgets -->
-        {% include widgets/debug_repo_name.html %}
-        {% include widgets/debug_url.html %}
-
-        {% if site.data.display.homepage.show_experience %}
-            {% include widgets/experience_card.html %}
-        {% endif %}
-
-        {% if site.data.display.homepage.show_news %}
-        {% assign count_news = site.news | size %}
-        {% if count_news > 0 %}
+{% if site.data.display.homepage.show_news %}
+    {% assign count_news = site.news | size %}
+    {% if count_news > 0 %}
         {% include widgets/news_card.html limit=site.data.display.homepage.num_news %}
-        {% endif %}
-        {% endif %}
+    {% endif %}
+{% endif %}
 
-        {% if site.data.display.homepage.show_selected_publications %}
-        {% assign pubs = site.publications | sort: "date" | reverse | where: "selected", true %}
-        {%
+{% if site.data.display.homepage.show_selected_publications %}
+    {% assign pubs = site.publications | sort: "date" | reverse | where: "selected", true %}
+    {%
         include widgets/publication_card.html
         publications=pubs
         title='<i class="fas fa-star"></i> Selected Publications'
-        %}
-        {% endif %}
-    </div>
-</div>
+    %}
+{% endif %}

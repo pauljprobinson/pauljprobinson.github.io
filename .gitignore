@@ -8,3 +8,9 @@ vendor/
 Gemfile.lock
 
 .DS_Store
+
+# local scratch
+.toc-*
+
+# local editor / agent config
+.claude/

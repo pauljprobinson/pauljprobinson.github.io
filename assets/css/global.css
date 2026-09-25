@@ -3,6 +3,7 @@ body {
     font-family: "Lato", sans-serif;
     font-weight: 400;
     padding-top: 5.0rem;
+    background-color: #eef3fa;   /* light tint of the theme's link blue */
 }
 
 h1, h2, h3, h4, h5, h6,
@@ -149,4 +150,139 @@ div.lazy {
     .carousel-indicators button {
         transition: none;
     }
+}
+
+.pub-number {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.6rem;
+    height: 1.6rem;
+    margin-top: 0.05rem;
+    border-radius: 50%;
+    background-color: #343a40;
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.entry-logo {
+    flex: 0 0 auto;
+    width: 2.75rem;
+    height: 2.75rem;
+    object-fit: contain;
+}
+
+.pub-link {
+    display: inline-block;
+    margin: 0.35rem 0.35rem 0 0;
+    padding: 0.1rem 0.5rem;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    font-size: 0.8rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    text-decoration: none;
+}
+
+.pub-link:hover,
+.pub-link:focus {
+    border-color: #343a40;
+    background-color: #343a40;
+    color: #fff;
+    text-decoration: none;
+}
+
+.pub-link i {
+    font-size: 0.7rem;
+    opacity: 0.7;
+}
+
+.pub-badge {
+    display: inline-block;
+    padding: 0.05rem 0.4rem;
+    border-radius: 0.25rem;
+    background-color: #ffc107;
+    color: #212529;
+    font-size: 0.7rem;
+    font-weight: 700;
+    vertical-align: 1px;
+    white-space: nowrap;
+}
+
+.award-icon {
+    color: #ffc107;
+}
+
+.cv-icon {
+    color: #adb5bd;
+    font-size: 0.85em;
+    vertical-align: 5%;
+}
+
+.research-icon {
+    color: #ffc107;
+}
+
+.rep-box {
+    background-color: #eef3fa;
+    border-radius: 0.5rem;
+}
+
+/* Keep anchor targets clear of the fixed navbar when jumped to. */
+.anchor-offset {
+    scroll-margin-top: 6rem;
+}
+
+.area-header {
+    background-color: #fff;
+    border-bottom: 0;
+    border-top-left-radius: 0.8rem !important;
+    border-top-right-radius: 0.8rem !important;
+}
+
+/* Amber rule beneath a research area title. Its length tracks the card width
+   continuously: never less than a third of it, never more than three quarters.
+   The middle term is a fixed length, so the rule grows more slowly than the card
+   and slides between the two bounds instead of jumping at a breakpoint. */
+.area-rule {
+    width: clamp(33%, 18rem, 75%);
+    height: 3px;
+    margin: 0.5rem auto 0;
+    border-radius: 2px;
+    background-color: #ffc107;
+}
+
+/* Research figures: fill the column when small, but never grow past a sensible
+   size on wide screens or when the figure is tall. */
+.area-figure {
+    display: block;
+    margin: 0 auto;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 20rem;
+}
+
+/* Figures in the row beneath an area's text: full column width, height bounded. */
+.area-figure-wide {
+    display: block;
+    margin: 0 auto;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 24rem;
+}
+
+/* Template credit beneath the "last updated" line. */
+.footer-credit {
+    margin-top: 0.15rem;
+    font-size: 0.8em;
+}
+
+.footer-credit a {
+    color: #6c757d;
 }

@@ -12,6 +12,18 @@
                     <a class="nav-link" href="{{ item.url | relative_url }}">{{ item.name }}</a>
                 </li>
                 {% endfor %}
+                {% if site.data.profile.gscholar %}
+                {%- if site.data.profile.gscholar contains 'scholar.google' -%}
+                {%- assign gscholar_url = site.data.profile.gscholar -%}
+                {%- else -%}
+                {%- assign gscholar_url = 'https://scholar.google.com/citations?user=' | append: site.data.profile.gscholar -%}
+                {%- endif -%}
+                <li class="nav-item">
+                    <a class="nav-link" target="_blank" href="{{ gscholar_url }}" title="Google Scholar" aria-label="Google Scholar">
+                        <i class="ai ai-google-scholar-square"></i><span class="d-sm-none"> Google Scholar</span>
+                    </a>
+                </li>
+                {% endif %}
             </ul>
         </div>
     </div>

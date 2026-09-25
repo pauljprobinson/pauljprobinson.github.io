@@ -31,3 +31,11 @@ gem "wdm", "~> 0.2" if Gem.win_platform?
 
 gem "webrick", "~> 1.7"
 gem "kramdown-parser-gfm"
+
+# Gems that left the Ruby stdlib in 3.4+/4.0 but are still required by Jekyll 3.x
+# and its dependencies (safe_yaml, liquid, kramdown, jekyll-watch).
+gem "base64"
+gem "bigdecimal"
+gem "csv"
+gem "logger"
+gem "ostruct"

@@ -1,0 +1,32 @@
+{%- comment -%}
+    Reads the entries marked `selected: true` in _data/cv.yml, so the wording and the
+    awarding body always match the CV. Fellowships and recognition are merged, newest first.
+{%- endcomment -%}
+{%- assign sel_fellowships = site.data.cv.fellowships | where: "selected", true -%}
+{%- assign sel_recognition = site.data.cv.recognition | where: "selected", true -%}
+{%- assign selected_awards = sel_fellowships | concat: sel_recognition | sort: "date" | reverse -%}
+{% if selected_awards.size > 0 %}
+<div class="row mt-3">
+    <div class="col">
+        <div class="card border-0 shadow-sm bg-white">
+            <div class="card-body p-4">
+                <div class="mx-2 my-1">
+                    <h6>Selected Awards</h6>
+                    <ul class="list-unstyled mb-1 mt-3">
+                        {% for item in selected_awards %}
+                        <li class="d-flex mb-2">
+                            <i class="fas fa-award award-icon mr-2 mt-1"></i>
+                            <div>
+                                {{ item.name }}
+                                {% if item.source %}<span class="text-muted">&mdash; {{ item.source }}</span>{% endif %}
+                            </div>
+                            <div class="ml-auto mt-auto pl-3 no-break small"><em>{{ item.date }}</em></div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
