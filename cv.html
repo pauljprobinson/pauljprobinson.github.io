@@ -1,0 +1,225 @@
+---
+layout: default
+title : CV
+navbar_title: CV
+---
+
+{%- comment -%}
+    The download button appears when a PDF is present: an explicit `cv_link:` in
+    _data/profile.yml wins, otherwise the first .pdf found in /assets/cv/.
+{%- endcomment -%}
+{%- assign cv_pdf = site.data.profile.cv_link -%}
+{%- unless cv_pdf -%}
+    {%- for f in site.static_files -%}
+        {%- if f.path contains '/assets/cv/' and f.extname == '.pdf' -%}
+            {%- assign cv_pdf = f.path -%}
+        {%- endif -%}
+    {%- endfor -%}
+{%- endunless -%}
+
+<div class="row mt-3">
+    <div class="col">
+        <div class="card border-0 shadow-sm bg-white">
+            <div class="card-body p-4">
+                <div class="d-flex flex-wrap align-items-center">
+                    <div>
+                        <div class="h3 font-weight-normal mb-1">{{ site.data.profile.primary_name }}</div>
+                        {% for position in site.data.profile.positions %}
+                        <div class="small text-muted">{{ position.name }}</div>
+                        {% endfor %}
+                        <div class="small mt-2">
+                            <a class="pr-3 no-break" href="mailto:{{ site.data.profile.email | encode_email }}">
+                                <i class="fas fa-at"></i> <span class="email-text">{{ site.data.profile.email | replace: "@", "(at)" }}</span>
+                            </a>
+                            {% if site.data.profile.gscholar %}
+                            {%- if site.data.profile.gscholar contains 'scholar.google' -%}
+                            {%- assign gscholar_url = site.data.profile.gscholar -%}
+                            {%- else -%}
+                            {%- assign gscholar_url = 'https://scholar.google.com/citations?user=' | append: site.data.profile.gscholar -%}
+                            {%- endif -%}
+                            <a class="pr-3 no-break" target="_blank" href="{{ gscholar_url }}">
+                                <i class="ai ai-google-scholar"></i> Google Scholar
+                            </a>
+                            {% endif %}
+                            {% if site.data.profile.orcid %}
+                            <a class="pr-3 no-break" target="_blank" href="https://orcid.org/{{ site.data.profile.orcid }}">
+                                <i class="fab fa-orcid"></i> {{ site.data.profile.orcid }}
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% if cv_pdf %}
+                    <div class="ml-auto mt-2">
+                        <a class="btn btn-outline-secondary" href="{{ cv_pdf | relative_url }}" download>
+                            <i class="fas fa-download"></i> Download CV
+                        </a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if site.data.cv.education %}
+<div class="row mt-3">
+    <div class="col">
+        <div class="card border-0 shadow-sm bg-white">
+            <div class="card-body p-4">
+                <h5 class="mb-3"><i class="fas fa-graduation-cap fa-fw cv-icon mr-2"></i>Education</h5>
+                <ul class="list-unstyled mb-0">
+                    {% for item in site.data.cv.education %}
+                    <li class="media mb-3">
+                        {% if item.logo %}<img src="{{ item.logo | relative_url }}" alt="{{ item.institution }}" class="entry-logo mr-2 mt-1 rounded-sm">{% endif %}
+                        <div class="media-body">
+                            <div class="d-flex">
+                                <div><strong>{{ item.degree }}</strong>, {{ item.field }}</div>
+                                <div class="ml-auto mt-auto no-break small"><em>{{ item.date }}</em></div>
+                            </div>
+                            <div class="small">{{ item.institution }}</div>
+                            {% if item.note %}<div class="small text-muted">{{ item.note }}</div>{% endif %}
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% if site.data.cv.appointments %}
+<div class="row mt-3">
+    <div class="col">
+        <div class="card border-0 shadow-sm bg-white">
+            <div class="card-body p-4">
+                <h5 class="mb-3"><i class="fas fa-briefcase fa-fw cv-icon mr-2"></i>Professional Experience</h5>
+                <ul class="list-unstyled mb-0">
+                    {% for item in site.data.cv.appointments %}
+                    <li class="media mb-3">
+                        {% if item.logo %}<img src="{{ item.logo | relative_url }}" alt="{{ item.institution }}" class="entry-logo mr-2 mt-1 rounded-sm">{% endif %}
+                        <div class="media-body">
+                            <div>{{ item.institution }}</div>
+                            {% if item.dept %}<div class="small text-muted">{{ item.dept }}</div>{% endif %}
+                            <ul class="list-unstyled mb-0 mt-1">
+                                {% for role in item.roles %}
+                                <li class="d-flex small">
+                                    <div>{{ role.position }}</div>
+                                    <div class="ml-auto mt-auto no-break"><em>{{ role.date }}</em></div>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                            {% if item.note %}<div class="small text-muted mt-1">{{ item.note }}</div>{% endif %}
+                            {% if item.advisor %}<div class="small text-muted">Advisor: {{ item.advisor }}</div>{% endif %}
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% assign journal_pubs = site.publications | where_exp: "item", "item.preprint != true" | where_exp: "item", "item.in_preparation != true" %}
+{% assign preprint_pubs = site.publications | where: "preprint", true %}
+{% assign count_pubs = journal_pubs | size %}
+{% assign count_preprints = preprint_pubs | size %}
+{% if count_pubs > 0 %}
+<div class="row mt-3">
+    <div class="col">
+        <div class="card border-0 shadow-sm bg-white">
+            <div class="card-body p-4">
+                <h5 class="mb-2"><i class="fas fa-book-open fa-fw cv-icon mr-2"></i>Publications</h5>
+                {% if count_pubs > 0 %}
+                <p class="small mb-0">
+                    {{ count_pubs }} publication{% if count_pubs != 1 %}s{% endif %}{% if count_preprints > 0 %} and {{ count_preprints }} preprint{% if count_preprints != 1 %}s{% endif %}{% endif %} listed on the <a href="{{ '/publications' | relative_url }}">publications page</a>.
+                </p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% assign award_sections = "fellowships,recognition,travel_awards" | split: "," %}
+{% assign award_titles = "Fellowships,Academic Recognition,Travel Awards" | split: "," %}
+{% assign award_icons = "fas fa-building-columns,fas fa-award,fas fa-plane" | split: "," %}
+{% for section in award_sections %}
+{% assign items = site.data.cv[section] %}
+{% if items %}
+<div class="row mt-3">
+    <div class="col">
+        <div class="card border-0 shadow-sm bg-white">
+            <div class="card-body p-4">
+                <h5 class="mb-3"><i class="{{ award_icons[forloop.index0] }} fa-fw cv-icon mr-2"></i>{{ award_titles[forloop.index0] }}</h5>
+                <ul class="list-unstyled mb-0">
+                    {% for item in items %}
+                    <li class="d-flex mb-1 small">
+                        <div>
+                            {{ item.name }}
+                            {% if item.source %}<span class="text-muted">&mdash; {{ item.source }}</span>{% endif %}
+                        </div>
+                        <div class="ml-auto mt-auto pl-3 no-break"><em>{{ item.date }}</em></div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endfor %}
+
+{% if site.data.cv.presentations %}
+<div class="row mt-3">
+    <div class="col">
+        <div class="card border-0 shadow-sm bg-white">
+            <div class="card-body p-4">
+                <h5 class="mb-3"><i class="fas fa-microphone-lines fa-fw cv-icon mr-2"></i>Presentations</h5>
+                <ul class="list-unstyled mb-0">
+                    {% for item in site.data.cv.presentations %}
+                    <li class="d-flex mb-1 small">
+                        <div>
+                            {{ item.name }}
+                            {% if item.location %}<span class="text-muted">&mdash; {{ item.location }}</span>{% endif %}
+                            {% if item.kind %}<span class="badge badge-light border ml-1">{{ item.kind }}</span>{% endif %}
+                        </div>
+                        <div class="ml-auto mt-auto pl-3 no-break"><em>{{ item.date }}</em></div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% assign list_sections = "teaching,service" | split: "," %}
+{% assign list_titles = "Teaching Experience,Professional Activities" | split: "," %}
+{% assign list_icons = "fas fa-chalkboard-user,fas fa-users" | split: "," %}
+{% for section in list_sections %}
+{% assign items = site.data.cv[section] %}
+{% if items %}
+<div class="row mt-3">
+    <div class="col">
+        <div class="card border-0 shadow-sm bg-white">
+            <div class="card-body p-4">
+                <h5 class="mb-3"><i class="{{ list_icons[forloop.index0] }} fa-fw cv-icon mr-2"></i>{{ list_titles[forloop.index0] }}</h5>
+                <ul class="list-unstyled mb-0">
+                    {% for item in items %}
+                    <li class="d-flex mb-1 small">
+                        <div>
+                            {% if item.kind %}<strong>{{ item.kind }}</strong>, {% endif %}{{ item.name }}
+                            {% if item.org %}<span class="text-muted">&mdash; {{ item.org }}</span>{% endif %}
+                        </div>
+                        <div class="ml-auto mt-auto pl-3 no-break"><em>{{ item.date }}</em></div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endfor %}

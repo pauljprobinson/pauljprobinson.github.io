@@ -1,0 +1,212 @@
+# Full CV record, rendered by cv.html.
+# The homepage shows a condensed version of this from _data/profile.yml.
+
+education:
+- degree: PhD
+  field: Chemical Physics
+  institution: Columbia University
+  logo: /assets/images/university_logos/Columbia_logo.jpeg
+  date: 2023
+- degree: BS
+  field: Physics
+  institution: University of California, Los Angeles
+  logo: /assets/images/university_logos/UCLA.jpeg
+  date: 2018
+  note: "<i>Cum Laude</i>, Departmental and College Honors"
+
+appointments:
+- institution: Harvard University
+  logo: /assets/images/university_logos/Harvard_logo.jpeg
+  dept: Department of Chemistry and Chemical Biology
+  roles:
+  - position: Arnold O. Beckman Postdoctoral Fellow
+    date: 2024 - present
+  - position: Postdoctoral Fellow
+    date: 2023 - 2024
+  advisor: Joonho Lee, PhD
+- institution: Columbia University
+  logo: /assets/images/university_logos/Columbia_logo.jpeg
+  dept: Department of Chemistry
+  roles:
+  - position: NSF Graduate Research Fellow
+    date: 2018 - 2023
+  advisor: David Reichman, PhD
+  note: "Thesis: <i>Structure and Dynamics in Electron-Phonon Coupled Materials</i>"
+- institution: California Institute of Technology
+  logo: /assets/images/university_logos/Caltech_logo.jpeg
+  dept: Division of Chemistry and Chemical Engineering
+  roles:
+  - position: John Stauffer VURP Fellow
+    date: 2017
+  advisor: Garnet Chan, PhD
+- institution: University of California, Berkeley
+  logo: /assets/images/university_logos/UC_Berkeley_logo.jpeg
+  dept: Department of Chemistry
+  roles:
+  - position: Junior Specialist
+    date: 2016
+  advisor: Eric Neuscamman, PhD
+- institution: University of California, Los Angeles
+  logo: /assets/images/university_logos/UCLA.jpeg
+  dept: Department of Chemistry and Biochemistry
+  roles:
+  - position: Undergraduate Researcher
+    date: 2014 - 2018
+  advisor: Anastassia Alexandrova, PhD
+
+fellowships:
+- name: Arnold O. Beckman Postdoctoral Fellowship
+  source: Arnold and Mabel Beckman Foundation
+  date: 2024
+  selected: true
+- name: Upjohn Fellowship
+  source: Columbia University
+  date: 2019
+- name: NSF Graduate Research Fellowship
+  source: National Science Foundation
+  date: 2018
+  selected: true
+
+recognition:
+- name: Wiley Computers in Chemistry Outstanding Postdoc Award
+  source: ACS COMP Division
+  date: 2026
+  selected: true
+- name: Pegram Award
+  source: Columbia University Department of Chemistry
+  date: 2023
+  selected: true
+- name: Best Poster
+  source: American Conference on Theoretical Chemistry
+  date: 2022
+- name: Chemical Computing Group Excellence Award
+  source: ACS COMP Division
+  date: 2022
+  selected: true
+- name: Dean's Prize for Excellence in Science
+  source: University of California, Los Angeles
+  date: 2018
+- name: Senior Undergraduate Research Scholar
+  source: University of California, Los Angeles
+  date: 2017
+- name: John Stauffer VURP Fellowship
+  source: California Institute of Technology
+  date: 2017
+- name: Junior Undergraduate Research Scholar
+  source: University of California, Los Angeles
+  date: 2016
+- name: Elmer Carvey Memorial Scholarship
+  source: AVS Southern California Chapter
+  date: 2016
+- name: Seaborg Poster Session Winner
+  source: University of California, Los Angeles
+  date: 2016
+- name: Raymond & Dorothy Wilson Research Fellowship
+  source: University of California, Los Angeles
+  date: 2015
+- name: Honors Program Maggie Gilbert Research Award
+  source: University of California, Los Angeles
+  date: 2015
+- name: Stuart C. Waugh and Scott L. Waugh Scholarship
+  source: University of California, Los Angeles
+  date: 2015
+- name: Grant-in-Aid of Research
+  source: Sigma Xi
+  date: 2015
+- name: Honorary Undergraduate Research Fellow
+  source: University of California, Los Angeles
+  date: 2015
+
+travel_awards:
+- name: Air Force Scholar
+  source: American Conference on Theoretical Chemistry
+  date: 2022
+- name: Travel Grant
+  source: Arts & Sciences Graduate Council
+  date: 2022
+
+presentations:
+- name: ACS National Meeting
+  location: Chicago, IL
+  kind: Poster
+  date: 2026
+- name: Beckman Symposium
+  location: Irvine, CA
+  kind: Poster
+  date: 2026
+- name: Advances in Electronic Structure Theory and Dynamics
+  location: Merced, CA
+  kind: Talk
+  date: 2026
+- name: 18th International Congress on Quantum Chemistry
+  location: Berkeley, CA
+  kind: Poster
+  date: 2026
+- name: Beckman Symposium
+  location: Irvine, CA
+  kind: Poster
+  date: 2025
+- name: 11th Triennial Molecular Quantum Mechanics Conference
+  location: Kyoto, Japan
+  kind: Poster
+  date: 2025
+- name: 11th Triennial Congress of the International Society for Theoretical Chemical Physics
+  location: Qingdao, China
+  kind: Poster
+  date: 2024
+- name: Wellcome Leap Quantum for Bio Grant Meeting
+  location: Ascot, UK
+  kind: Talk
+  date: 2024
+- name: "Center for Computational Quantum Physics: Polaron Meeting"
+  location: New York, NY
+  kind: Talk
+  date: 2023
+- name: ACS National Meeting
+  location: Chicago, IL
+  kind: Poster
+  date: 2022
+- name: American Conference on Theoretical Chemistry
+  location: Olympic Valley, CA
+  kind: Poster
+  date: 2022
+- name: ACS National Meeting
+  location: Boston, MA
+  kind: Talk
+  date: 2018
+- name: International Conference on Chemical Bonding
+  location: Lihue, HI
+  kind: Talk
+  date: 2016
+
+teaching:
+- kind: Teaching Assistant
+  name: Intensive General Chemistry
+  date: 2019
+- kind: Teaching Assistant
+  name: General Chemistry I
+  date: 2019
+- kind: Teaching Assistant
+  name: Intensive General Chemistry Lab
+  date: 2018
+
+service:
+- name: "Journal of Physical Chemistry A"
+  org: American Chemical Society
+  kind: Reviewer
+- name: "Journal of Physical Chemistry C"
+  org: American Chemical Society
+  kind: Reviewer
+- name: Physical Review B
+  org: American Physical Society
+  kind: Reviewer
+- name: Cambridge Science Festival
+  kind: Presenter
+  date: 2024
+- name: Arts & Sciences Graduate Council
+  org: Executive Board
+  kind: Events Co-Chair
+  date: 2019 - 2022
+- name: Student Physical Chemistry Seminar
+  kind: Chair
+  date: 2018 - 2021
