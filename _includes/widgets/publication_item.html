@@ -55,7 +55,7 @@
                 {% for cat in item.categories %}
                 {%- assign area = site.data.research.areas | where: "key", cat | first -%}
                 {% if area %}
-                <span class="pub-category">
+                <span class="pub-category" data-category="{{ cat }}">
                     {% if area.icon %}<img src="{{ area.icon | relative_url }}" alt="">{% endif %}
                     {{ area.short | default: area.title }}
                 </span>
@@ -100,7 +100,7 @@
                     {% for cat in item.categories %}
                     {%- assign area = site.data.research.areas | where: "key", cat | first -%}
                     {% if area %}
-                    <span class="pub-category">
+                    <span class="pub-category" data-category="{{ cat }}">
                         {% if area.icon %}<img src="{{ area.icon | relative_url }}" alt="">{% endif %}
                         {{ area.short | default: area.title }}
                     </span>

@@ -410,6 +410,13 @@ div.lazy {
     margin-right: 0.3rem;
 }
 
+/* The chip that matched the filter, so it is clear why an entry is still showing. */
+.pub-category.is-match {
+    border-color: #ffc107;
+    background-color: #fff3cd;
+    color: #212529;
+}
+
 /* Filter bar at the top of the publications page. The chips echo .pub-category, with
    a pressed state in the site's amber; `All` is pressed whenever nothing else is. */
 /* A flex row rather than inline-blocks: chips with an icon and the plain `All` chip

@@ -153,6 +153,9 @@ body_attr: >-
         entries.forEach(function (entry) {
             var cats = (entry.dataset.categories || '').split(' ');
             entry.hidden = keys.length > 0 && !keys.some(function (k) { return cats.indexOf(k) !== -1; });
+            entry.querySelectorAll('.pub-category').forEach(function (chip) {
+                chip.classList.toggle('is-match', keys.indexOf(chip.dataset.category) !== -1);
+            });
         });
 
         document.querySelectorAll('.pub-list').forEach(redrawEdges);
