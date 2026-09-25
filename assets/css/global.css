@@ -347,3 +347,16 @@ div.lazy {
 .footer-credit a {
     color: #6c757d;
 }
+
+/* Justify the biography on wider screens only. Below md the measure is short
+   enough (~40 characters) that justification opens visible gaps between words,
+   since browsers do not hyphenate by default. */
+.bio-justify {
+    text-align: justify;
+}
+
+@media (max-width: 767.98px) {
+    .bio-justify {
+        text-align: left;
+    }
+}
