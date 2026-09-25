@@ -10,6 +10,8 @@ issue:          "2"
 article_number: "024109"
 # abstract: >-
 #   One or two sentences, written by you.
+categories:
+- method
 authors:
 - "Q. Sun"
 - "X. Zhang"

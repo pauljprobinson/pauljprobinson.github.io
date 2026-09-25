@@ -9,6 +9,9 @@ issue:          "50"
 pages:          "22684–22689"
 # abstract: >-
 #   One or two sentences, written by you.
+categories:
+- bonding
+- materials
 authors:
 - "J. Munarriz"
 - "P. J. Robinson"

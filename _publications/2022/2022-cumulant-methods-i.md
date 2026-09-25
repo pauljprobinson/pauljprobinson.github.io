@@ -12,6 +12,8 @@ pub_last:       >-
   <span class="pub-badge">Editors&rsquo; Suggestion</span>
 # abstract: >-
 #   One or two sentences, written by you.
+categories:
+- eph
 authors:
 - "P. J. Robinson*"
 - "I. S. Dunn*"

@@ -12,6 +12,9 @@ pub_last:       >-
   <span class="pub-badge">Hot Paper</span>
 # abstract: >-
 #   One or two sentences, written by you.
+categories:
+- bonding
+- materials
 authors:
 - "P. J. Robinson"
 - "J. Munarriz"

@@ -10,6 +10,8 @@ issue:          "22"
 article_number: "224305"
 # abstract: >-
 #   One or two sentences, written by you.
+categories:
+- eph
 authors:
 - "P. J. Robinson"
 - "I. S. Dunn"

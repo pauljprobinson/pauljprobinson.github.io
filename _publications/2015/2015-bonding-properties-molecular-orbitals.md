@@ -9,6 +9,8 @@ issue:          "51"
 pages:          "12862–12867"
 # abstract: >-
 #   One or two sentences, written by you.
+categories:
+- bonding
 authors:
 - "P. J. Robinson"
 - "A. N. Alexandrova"

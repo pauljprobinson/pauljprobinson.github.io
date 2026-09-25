@@ -9,6 +9,8 @@ issue:          "16"
 article_number: "164114"
 # abstract: >-
 #   One or two sentences, written by you.
+categories:
+- method
 authors:
 - "P. J. Robinson"
 - "S. D. Pineda Flores"

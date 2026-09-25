@@ -22,6 +22,12 @@
         {%- endfor -%}
     {%- endif -%}
 {%- endunless -%}
+{%- comment -%}
+    The two layouts below - wide screens first, then narrow - are wrapped together so
+    the category filter on the publications page can show or hide an entry with one
+    element. `data-categories` is what the filter matches against.
+{%- endcomment -%}
+<div class="pub-entry"{% if item.categories %} data-categories="{{ item.categories | join: ' ' }}"{% endif %}>
 <div class="d-none d-md-block">
     <div class="row no-gutters {% unless include.hide_bottom_border %}border-bottom{% endunless %} border-gray">
         <div class="col-md-3 col-xl-2 mb-md-0 p-md-3">
@@ -40,6 +46,24 @@
             <p class="mt-0 mb-0 small"><i>{{ item.pub }}</i> <strong>{{ item.pub_date }}</strong>{% if item.volume %}, <i>{{ item.volume }}</i>{% endif %}{% if item.issue %} ({{ item.issue }}){% endif %}{% if item.pages %}, {{ item.pages }}{% elsif item.article_number %}, {{ item.article_number }}{% endif %}. {{ item.pub_last }} <span data-semantic-scholar-id="{{ item.semantic_scholar_id }}"></span></p>
             <p class="mt-0 mb-0 small text-muted">{{ item.abstract }}</p>
             
+            {%- comment -%}
+                Category chips: each key matches an area in _data/research.yml,
+                which supplies the label and icon.
+            {%- endcomment -%}
+            {% if item.categories %}
+            <p class="mb-0">
+                {% for cat in item.categories %}
+                {%- assign area = site.data.research.areas | where: "key", cat | first -%}
+                {% if area %}
+                <span class="pub-category">
+                    {% if area.icon %}<img src="{{ area.icon | relative_url }}" alt="">{% endif %}
+                    {{ area.short | default: area.title }}
+                </span>
+                {% endif %}
+                {% endfor %}
+            </p>
+            {% endif %}
+
             <p class="small pb-0 mb-0 lh-125 text-muted abstract-links">
                 {% for link in item.links %}
                 {% if link[1].url %}
@@ -67,6 +91,24 @@
                 <p class="mt-0 mb-0 small"><i>{{ item.pub }}</i> <strong>{{ item.pub_date }}</strong>{% if item.volume %}, <i>{{ item.volume }}</i>{% endif %}{% if item.issue %} ({{ item.issue }}){% endif %}{% if item.pages %}, {{ item.pages }}{% elsif item.article_number %}, {{ item.article_number }}{% endif %}. {{ item.pub_last }} <span data-semantic-scholar-id="{{ item.semantic_scholar_id }}"></span></p>
                 <p class="mt-0 mb-0 small text-muted">{{ item.abstract }}</p>
                 
+                {%- comment -%}
+                    Category chips: each key matches an area in _data/research.yml,
+                    which supplies the label and icon.
+                {%- endcomment -%}
+                {% if item.categories %}
+                <p class="mb-0">
+                    {% for cat in item.categories %}
+                    {%- assign area = site.data.research.areas | where: "key", cat | first -%}
+                    {% if area %}
+                    <span class="pub-category">
+                        {% if area.icon %}<img src="{{ area.icon | relative_url }}" alt="">{% endif %}
+                        {{ area.short | default: area.title }}
+                    </span>
+                    {% endif %}
+                    {% endfor %}
+                </p>
+                {% endif %}
+
                 <p class="small pb-0 mb-0 lh-125 text-muted abstract-links">
                     {% for link in item.links %}
                     {% if link[1].url %}
@@ -76,8 +118,10 @@
                     {% endif %}
                     {% endfor %}
                 </p>
+
             </div>
         </div>
     </div>
 
+</div>
 </div>

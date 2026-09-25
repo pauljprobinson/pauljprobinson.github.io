@@ -8,17 +8,23 @@
     <div class="card-body p-4">
         <h6>Research Interests</h6>
         <ul class="list-unstyled mb-0 mt-3">
-            {% for area in site.data.research.areas %}{% if area.title %}
+            {% for area in site.data.research.areas %}{% if area.title and area.interest != false %}
             {%- assign slug = area.title | slugify -%}
             {%- assign reps = site.publications | where: "representative", area.key | sort: "date" | reverse -%}
-            <li class="mb-2">
+            <li class="mb-3">
                 <div class="d-flex">
-                    <i class="fas fa-atom research-icon mr-2 mt-1"></i>
                     <div class="w-100">
                         {% if reps.size > 0 %}
-                        <a class="interest-toggle" data-toggle="collapse" href="#interest-{{ slug }}"
+                        <a class="interest-toggle d-flex align-items-center" data-toggle="collapse" href="#interest-{{ slug }}"
                            role="button" aria-expanded="false" aria-controls="interest-{{ slug }}">
-                            {{ area.title }}<span class="interest-badge ml-2"><i class="fas fa-chevron-down interest-caret mr-1"></i><span class="interest-label-show">Show Key Publications</span><span class="interest-label-hide">Hide Key Publications</span></span>
+                            <span class="interest-icon mr-2">
+                                {%- if area.icon -%}
+                                <img src="{{ area.icon | relative_url }}" alt="">
+                                {%- else -%}
+                                <i class="fas fa-atom"></i>
+                                {%- endif -%}
+                            </span>
+                            <span>{{ area.title }}<span class="interest-badge ml-2"><i class="fas fa-chevron-down interest-caret mr-1"></i><span class="interest-label-show">Show Key Publications</span><span class="interest-label-hide">Hide Key Publications</span></span></span>
                         </a>
                         <div class="collapse" id="interest-{{ slug }}">
                             <ul class="list-unstyled small text-muted mt-2 mb-3 pl-3 interest-papers">
@@ -39,7 +45,12 @@
                             {% endif %}
                         </div>
                         {% else %}
-                        {{ area.title }}
+                        <span class="d-flex align-items-center">
+                            <span class="interest-icon mr-2">
+                                {%- if area.icon -%}<img src="{{ area.icon | relative_url }}" alt="">{%- else -%}<i class="fas fa-atom"></i>{%- endif -%}
+                            </span>
+                            <span>{{ area.title }}</span>
+                        </span>
                         {% endif %}
                     </div>
                 </div>

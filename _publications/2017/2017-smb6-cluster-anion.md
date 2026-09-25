@@ -9,6 +9,8 @@ issue:          "8"
 pages:          "1849–1854"
 # abstract: >-
 #   One or two sentences, written by you.
+categories:
+- bonding
 authors:
 - "P. J. Robinson"
 - "X. Zhang"

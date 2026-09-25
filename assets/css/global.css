@@ -277,6 +277,34 @@ div.lazy {
     max-height: 24rem;
 }
 
+/* Icon disc beside each research interest. The disc carries the open/closed
+   state: page blue when closed, light gold when open. Icons are scaled to a
+   common width, so their own proportions decide their height. */
+.interest-icon {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.9rem;
+    height: 1.9rem;
+    border-radius: 50%;
+    background-color: #eef3fa;
+    border: 1px solid #dbe6f5;
+    color: #adb5bd;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.interest-icon img {
+    width: 74%;
+    height: auto;
+    display: block;
+}
+
+.interest-toggle[aria-expanded="true"] .interest-icon {
+    background-color: #fff3cd;
+    border-color: #ffe8a1;
+}
+
 /* Research interests that expand to their key publications. */
 .interest-toggle {
     color: #212529;
@@ -359,4 +387,79 @@ div.lazy {
     .bio-justify {
         text-align: left;
     }
+}
+
+/* Category chips under a publication's links. */
+.pub-category {
+    display: inline-flex;
+    align-items: center;
+    margin: 0.35rem 0.3rem 0 0;
+    padding: 0.05rem 0.45rem 0.05rem 0.3rem;
+    border: 1px solid #e3e6ea;
+    border-radius: 0.25rem;
+    background-color: #f8f9fa;
+    font-size: 0.72rem;
+    color: #495057;
+    white-space: nowrap;
+}
+
+.pub-category img {
+    width: 0.95rem;
+    height: 0.95rem;
+    object-fit: contain;
+    margin-right: 0.3rem;
+}
+
+/* Filter bar at the top of the publications page. The chips echo .pub-category, with
+   a pressed state in the site's amber; `All` is pressed whenever nothing else is. */
+/* A flex row rather than inline-blocks: chips with an icon and the plain `All` chip
+   resolve different baselines, which left them a few pixels apart on the same line. */
+.pub-filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem 0.3rem;
+}
+
+.pub-filter-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #6c757d;
+}
+
+.pub-filter {
+    display: inline-flex;
+    align-items: center;
+    margin: 0;
+    padding: 0.1rem 0.5rem 0.1rem 0.35rem;
+    border: 1px solid #e3e6ea;
+    border-radius: 0.25rem;
+    background-color: #f8f9fa;
+    font-size: 0.72rem;
+    color: #495057;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.pub-filter-all {
+    padding-left: 0.5rem;
+}
+
+.pub-filter:hover {
+    border-color: #ced4da;
+    background-color: #fff;
+}
+
+.pub-filter[aria-pressed="true"] {
+    border-color: #ffc107;
+    background-color: #fff3cd;
+    color: #212529;
+}
+
+.pub-filter img {
+    width: 0.95rem;
+    height: 0.95rem;
+    object-fit: contain;
+    margin-right: 0.3rem;
 }

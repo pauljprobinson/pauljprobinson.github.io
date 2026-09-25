@@ -9,6 +9,9 @@ issue:          "10"
 pages:          "5647–5656"
 # abstract: >-
 #   One or two sentences, written by you.
+categories:
+- bonding
+- materials
 authors:
 - "J. Lei"
 - "M. T. Yeung"

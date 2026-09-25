@@ -9,6 +9,9 @@ issue:          "7"
 pages:          "3233–3245"
 # abstract: >-
 #   One or two sentences, written by you.
+categories:
+- bonding
+- materials
 authors:
 - "G. Akopov"
 - "S. Hu"

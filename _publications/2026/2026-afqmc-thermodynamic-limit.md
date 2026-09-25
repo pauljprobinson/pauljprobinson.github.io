@@ -9,6 +9,9 @@ issue:          "3"
 article_number: "031044"
 # abstract: >-
 #   One or two sentences, written by you.
+categories:
+- method
+- materials
 authors:
 - "J. Zhang"
 - "M.-F. Chen"

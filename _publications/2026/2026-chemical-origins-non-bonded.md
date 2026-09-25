@@ -9,6 +9,10 @@ pub_date:       "2026"
 article_number: "2605.15381"
 # abstract: >-
 #   One or two sentences, written by you.
+categories:
+- nci
+- method
+- materials
 authors:
 - "P. J. Robinson"
 - "A. Rettig"

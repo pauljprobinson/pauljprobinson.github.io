@@ -3,22 +3,40 @@
 # in _data/research.yml.bak until the research page is ready to publish.
 #   title  - heading shown on the homepage
 #   key    - publications with a matching `representative:` belong to this area
+#   short  - short label used on publication category chips
+#   interest: false - a publication label only; not shown as a research interest
+#   icon   - optional svg shown in the disc beside the title
 #   figure - optional image or mp4 shown under the publications in the dropdown
 #   figure_width  - how wide it may run, as a fraction of the text above it (default 75%)
 #   figure_height - how tall it may run (default 12rem); raise it for tall figures
 areas:
 - title: Electron-Phonon Interactions
   key: eph
+  short: Electron-Phonon Interactions
+  icon: /assets/images/icons/epi.svg
   figure: /assets/images/research_images/epi_fig.jpg
 - title: Non-Covalent Interactions
   key: nci
+  short: Non-Covalent Interactions
+  icon: /assets/images/icons/nci.svg
   figure: /assets/images/research_images/nci_fig.png
   figure_width: 65%
   figure_height: 20rem
-- title: Chemical Bonding in Solids
-  key: bonding
-  figure: /assets/images/research_images/bond_fig.jpg
 - title: Electronic-Structure Development
   key: method
+  short: Electronic Structure
+  icon: /assets/images/icons/e_struct.svg
   figure: /assets/images/research_images/dev_fig.jpg
   figure_width: 50%
+- title: Chemical Bonding in Solids
+  key: bonding
+  short: Chemical Bonding
+  icon: /assets/images/icons/bonds.svg
+  figure: /assets/images/research_images/bond_fig.jpg
+
+# Label only - categorises publications without appearing in the interests list.
+- title: Materials
+  key: materials
+  short: Materials
+  icon: /assets/images/icons/solids.svg
+  interest: false

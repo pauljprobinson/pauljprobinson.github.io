@@ -10,6 +10,9 @@ issue:          "23"
 pages:          "9892–9896"
 # abstract: >-
 #   One or two sentences, written by you.
+categories:
+- bonding
+- materials
 authors:
 - "P. J. Robinson"
 - "G. Liu"

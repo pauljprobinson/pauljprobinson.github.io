@@ -9,6 +9,8 @@ issue:          "9"
 article_number: "094307"
 # abstract: >-
 #   One or two sentences, written by you.
+categories:
+- bonding
 authors:
 - "X. Zhang"
 - "P. J. Robinson"

@@ -10,6 +10,8 @@ issue:          "7"
 article_number: "102480"
 # abstract: >-
 #   One or two sentences, written by you.
+categories:
+- nci
 authors:
 - "K. J. Wu*"
 - "E. V. Aleksandrova*"

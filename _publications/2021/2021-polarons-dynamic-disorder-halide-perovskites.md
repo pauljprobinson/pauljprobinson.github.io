@@ -9,6 +9,9 @@ issue:          "6"
 pages:          "2162–2173"
 # abstract: >-
 #   One or two sentences, written by you.
+categories:
+- eph
+- materials
 authors:
 - "M. J. Schilcher"
 - "P. J. Robinson"

@@ -10,6 +10,9 @@ issue:          "1"
 article_number: "e70005"
 # abstract: >-
 #   One or two sentences, written by you.
+categories:
+- method
+- materials
 authors:
 - "P. J. Robinson*"
 - "A. Rettig*"
